@@ -1,4 +1,4 @@
-﻿using DddPlayground.Domain.Infrastructure.EventSourcing;
+﻿using DddPlayground.Infrastructure.EventSourcing;
 using System;
 
 namespace DddPlayground.Domain

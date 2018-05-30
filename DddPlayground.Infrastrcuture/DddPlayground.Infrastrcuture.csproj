@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="MediatR" Version="4.1.0" />
   </ItemGroup>
 
 </Project>

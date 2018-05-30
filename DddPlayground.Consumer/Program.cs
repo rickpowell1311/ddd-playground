@@ -1,6 +1,12 @@
-﻿using DddPlayground.Domain;
+﻿using Autofac;
+using DddPlayground.Consumer.Features;
+using DddPlayground.Domain;
+using DddPlayground.Infrastrcuture.MediatR;
+using DddPlayground.Infrastructure.EventSourcing;
 using DddPlayground.Infrastructure.Persistance;
 using DddPlayground.InMemory;
+using MediatR;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace DddPlayground.Consumer
@@ -9,16 +15,31 @@ namespace DddPlayground.Consumer
     {
         static async Task Main(string[] args)
         {
-            IPeristenceScope persistenceScope = new InMemoryPersistenceScope();
+            var scannedAssemblies = new Assembly[]
+            {
+                typeof(Program).Assembly,
+                typeof(User.Aggregate).Assembly
+            };
+            
+            var builder = new ContainerBuilder();
+            builder.RegisterModule(new MediatRAutofacModule(scannedAssemblies));
+            builder.RegisterModule(new EventSourcingAutofacModule(scannedAssemblies));
 
-            var user = new User.Aggregate("Rick Powell");
+            using (var container = builder.Build())
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var mediator = scope.Resolve<IMediator>();
+                await mediator.Send(new CreateUser.Request());
+            }
 
-            await persistenceScope.BeginTransaction();
+            //  var user = new User.Aggregate("Rick Powell");
 
-            var repository = new UserAggregateRepository();
-            user = await repository.Insert(user);
+            //await persistenceScope.BeginTransaction();
 
-            await persistenceScope.CommitTransaction();
+            //var repository = new UserAggregateRepository();
+            //user = await repository.Insert(user);
+
+            //await persistenceScope.CommitTransaction();
         }
     }
 }

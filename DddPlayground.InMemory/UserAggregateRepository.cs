@@ -18,11 +18,7 @@ namespace DddPlayground.InMemory
         {
             await Task.Yield();
 
-            return new User.Aggregate(new User.State
-            {
-                Id = Guid.NewGuid(),
-                Name = "Rick Powell"
-            });
+            return new User.Aggregate(_inMemoryStore[id]);
         }
 
         public async Task<User.Aggregate> Insert(User.Aggregate aggregate)

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace DddPlayground.Domain.Infrastructure.EventSourcing
+namespace DddPlayground.Infrastructure.EventSourcing
 {
     public interface IEventDispatcher
     {
