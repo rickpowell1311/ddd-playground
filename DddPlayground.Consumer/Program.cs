@@ -32,10 +32,7 @@ namespace DddPlayground.Consumer
                 cfg.SetDatabaseFilePath(new System.IO.DirectoryInfo(dbFilePath), dbName);
             });
 
-            using (var db = dbManager.Database())
-            {
-                // This will update the database on startup
-            }
+            dbManager.Deploy();
 
             var scannedAssemblies = new Assembly[]
             {
@@ -54,15 +51,6 @@ namespace DddPlayground.Consumer
                 var mediator = scope.Resolve<IMediator>();
                 await mediator.Send(new CreateUser.Request());
             }
-
-            //  var user = new User.Aggregate("Rick Powell");
-
-            //await persistenceScope.BeginTransaction();
-
-            //var repository = new UserAggregateRepository();
-            //user = await repository.Insert(user);
-
-            //await persistenceScope.CommitTransaction();
         }
     }
 }

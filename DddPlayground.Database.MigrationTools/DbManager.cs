@@ -7,7 +7,7 @@ using Microsoft.Data.Sqlite;
 
 namespace DddPlayground.Database.MigrationTools
 {
-    public class DbManager : IDbManager
+    public class DbManager
     {
         internal DbManagerConfiguration Configuration { get; private set; }
         private readonly Action<DbManagerConfiguration> configurationAction;
@@ -18,24 +18,13 @@ namespace DddPlayground.Database.MigrationTools
             this.configurationAction = configurationAction;
         }
 
-        public Func<IDbConnection> Database
+        public void Deploy()
         {
-            get
+            if (configurationAction != null)
             {
-                try
-                {
-                    configurationAction?.Invoke(Configuration);
-                    return Initialize();
-                }
-                catch (Exception ex)
-                {
-                    return () => { throw ex; };
-                }
+                configurationAction(Configuration);
             }
-        }
 
-        private Func<IDbConnection> Initialize()
-        {
             using (var conn = new SqliteConnection(string.Format("Data Source={0};", Configuration.DbPath)))
             {
                 conn.Open();
@@ -60,20 +49,10 @@ namespace DddPlayground.Database.MigrationTools
                             transaction.Rollback();
 
                             var exception = new Exception(string.Format("Whilst trying to apply script  with Id '{0}'", script.Key), ex);
-
-                            // This ensures any further calls to the database are met with exception until script is amended
-                            return () => { throw exception; };
                         }
                     }
                 }
             }
-
-            return () =>
-            {
-                var conn = new SqliteConnection(string.Format("Data Source={0};", Configuration.DbPath));
-                conn.Open();
-                return conn;
-            };
         }
     }
 }
