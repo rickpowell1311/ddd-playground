@@ -3,18 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DddPlayground.InMemory
+namespace DddPlayground.Persistence.InMemory
 {
-    public class UserAggregateRepository
+    public class UserAggregateRepository : IUserAggregateRepository
     {
-        private Dictionary<Guid, User.State> _inMemoryStore;
+        private Dictionary<long, User.State> _inMemoryStore;
 
         public UserAggregateRepository()
         {
-            _inMemoryStore = new Dictionary<Guid, User.State>();
+            _inMemoryStore = new Dictionary<long, User.State>();
         }
 
-        public async Task<User.Aggregate> Fetch(Guid id)
+        public async Task<User.Aggregate> Fetch(long id)
         {
             await Task.Yield();
 
@@ -25,14 +25,12 @@ namespace DddPlayground.InMemory
         {
             await Task.Yield();
 
-            aggregate.State.Id = Guid.NewGuid();
-
             _inMemoryStore[aggregate.State.Id] = aggregate.State;
 
             return new User.Aggregate(aggregate.State);
         }
 
-        public async Task Remove(User.Aggregate aggregate)
+        public async Task Delete(User.Aggregate aggregate)
         {
             if (_inMemoryStore.ContainsKey(aggregate.State.Id))
             {

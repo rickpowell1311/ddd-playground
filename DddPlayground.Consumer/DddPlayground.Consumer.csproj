@@ -15,8 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DddPlayground.Database.Migrations\DddPlayground.Database.Migrations.csproj" />
+    <ProjectReference Include="..\DddPlayground.Database.MigrationTools\DddPlayground.Database.MigrationTools.csproj" />
     <ProjectReference Include="..\DddPlayground.Domain\DddPlayground.Domain.csproj" />
-    <ProjectReference Include="..\DddPlayground.InMemory\DddPlayground.InMemory.csproj" />
+    <ProjectReference Include="..\DddPlayground.InMemory\DddPlayground.Persistence.InMemory.csproj" />
+    <ProjectReference Include="..\DddPlayground.Persistence.NPoco\DddPlayground.Persistence.NPoco.csproj" />
   </ItemGroup>
 
 </Project>

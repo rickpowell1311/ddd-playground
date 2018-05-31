@@ -4,17 +4,15 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
+    <PackageReference Include="NPoco" Version="3.9.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DddPlayground.Domain\DddPlayground.Domain.csproj" />
-    <ProjectReference Include="..\DddPlayground.Infrastrcuture\DddPlayground.Infrastrcuture.csproj" />
+    <ProjectReference Include="..\DddPlayground.Persistence\DddPlayground.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using DddPlayground.Infrastructure.Persistance;
 using System.Threading.Tasks;
 
-namespace DddPlayground.InMemory
+namespace DddPlayground.Persistence.InMemory
 {
     public class InMemoryPersistenceScope : IPeristenceScope
     {

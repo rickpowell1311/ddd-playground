@@ -29,20 +29,20 @@ namespace DddPlayground.Domain
 
         public class State
         {
-            public Guid Id { get; set; }
+            public long Id { get; set; }
 
             public string Name { get; set; }
         }
 
         public class NameChanged : IEvent
         {
-            public Guid UserId { get; }
+            public long UserId { get; }
 
             public string OldName { get; }
 
             public string NewName { get; }
 
-            public NameChanged(Guid userId, string oldName, string newName)
+            public NameChanged(long userId, string oldName, string newName)
             {
                 UserId = userId;
                 OldName = oldName;
