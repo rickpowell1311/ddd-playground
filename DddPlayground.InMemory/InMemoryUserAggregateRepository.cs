@@ -7,11 +7,11 @@ namespace DddPlayground.Persistence.InMemory
 {
     public class UserAggregateRepository : IUserAggregateRepository
     {
-        private Dictionary<long, User.State> _inMemoryStore;
+        private Dictionary<long, User.UserState> _inMemoryStore;
 
         public UserAggregateRepository()
         {
-            _inMemoryStore = new Dictionary<long, User.State>();
+            _inMemoryStore = new Dictionary<long, User.UserState>();
         }
 
         public async Task<User.Aggregate> Fetch(long id)

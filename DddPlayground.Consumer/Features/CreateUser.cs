@@ -29,12 +29,12 @@ namespace DddPlayground.Consumer.Features
 
             public async Task Handle(Request request, CancellationToken cancellationToken)
             {
-                var user = new User.Aggregate("Rick Powell");
+                var user = new User.Aggregate("Bob Smith");
 
                 user = await this.userRepository.Insert(user);
 
                 var fetched = await this.userRepository.Fetch(user.State.Id);
-                fetched.ChangeName("Richard Powell", eventDispatcher);
+                fetched.ChangeName("Fred Bloggs");
 
                 await this.userRepository.Update(fetched);
                 await this.userRepository.Delete(fetched);

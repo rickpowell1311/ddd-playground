@@ -1,4 +1,5 @@
-﻿using DddPlayground.Infrastructure.EventSourcing;
+﻿using DddPlayground.Infrastrcuture.EventSourcing;
+using DddPlayground.Infrastructure.EventSourcing;
 using System;
 
 namespace DddPlayground.Domain
@@ -7,31 +8,43 @@ namespace DddPlayground.Domain
     {
         public class Aggregate
         {
-            public State State { get; }
+            public UserState State { get; private set; }
 
-            public Aggregate(State state)
+            public Aggregate(UserState state)
             {
                 State = state;
+
+                if (State.HasNewIdentity)
+                {
+                    EventRaiser.RaiseEvent(this, new UserCreated { Id = State.Id });
+                }
             }
 
-            public Aggregate(string name) : this(new State())
+            public Aggregate(string name) : this(new UserState())
             {
                 State.Name = name;
             }
 
-            public void ChangeName(string name, IEventDispatcher eventDispatcher)
+            public void ChangeName(string name)
             {
-                eventDispatcher.Dispatch(new NameChanged(State.Id, State.Name, name));
-
                 State.Name = name;
+
+                EventRaiser.RaiseEvent(this, new NameChanged(State.Id, State.Name, name));
             }
         }
 
-        public class State
+        public class UserState
         {
             public long Id { get; set; }
 
+            public bool HasNewIdentity { get; set; }
+
             public string Name { get; set; }
+        }
+
+        public class UserCreated : IEvent
+        {
+            public long Id { get; set; }
         }
 
         public class NameChanged : IEvent

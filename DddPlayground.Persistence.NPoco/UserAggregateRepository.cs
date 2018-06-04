@@ -27,10 +27,12 @@ namespace DddPlayground.Persistence.NPoco
         {
             var dto = new Dtos.User();
             dto.Populate(aggregate.State);
-
             dto.Id = (long)await database.InsertAsync(dto);
 
-            return new User.Aggregate(dto.Map());
+            var state = dto.Map();
+            state.HasNewIdentity = true;
+
+            return new User.Aggregate(state);
         }
 
         public async Task Delete(User.Aggregate aggregate)
@@ -51,22 +53,22 @@ namespace DddPlayground.Persistence.NPoco
 
         public static class Dtos
         {
-            public class User : IPopulatableFrom<Domain.User.State>, IMappableTo<Domain.User.State>
+            public class User : IPopulatableFrom<Domain.User.UserState>, IMappableTo<Domain.User.UserState>
             {
                 public long Id { get; set; }
 
                 public string Name { get; set; }
 
-                public Domain.User.State Map()
+                public Domain.User.UserState Map()
                 {
-                    return new Domain.User.State
+                    return new Domain.User.UserState
                     {
                         Id = Id,
                         Name = Name
                     };
                 }
 
-                public void Populate(Domain.User.State source)
+                public void Populate(Domain.User.UserState source)
                 {
                     Id = source.Id;
                     Name = source.Name;

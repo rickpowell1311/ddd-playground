@@ -42,9 +42,22 @@ namespace DddPlayground.Infrastructure.EventSourcing
                 .GroupBy(n => n.EventType)
                 .ToDictionary(g => g.Key, g => g.Select(x => x.Notification));
 
+            var eventDispatcher = 
+
             builder.Register<EventDispatcher>(c => new EventDispatcher(c.Resolve<IMediator>(), eventsAndNotifications))
                 .As<IEventDispatcher>()
                 .SingleInstance();
+
+            builder.Register(c =>
+            {
+                var eventListener = new EventListener(c.Resolve<IEventDispatcher>());
+                EventRaiser.EventRaised += eventListener.HandleRaisedEvent;
+
+                return eventListener;
+            })
+            .AsSelf()
+            .SingleInstance()
+            .AutoActivate();
         }
     }
 }
