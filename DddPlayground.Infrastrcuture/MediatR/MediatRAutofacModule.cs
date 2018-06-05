@@ -28,17 +28,9 @@ namespace DddPlayground.Infrastrcuture.MediatR
 
             // request handlers
             builder
-              .Register<SingleInstanceFactory>(ctx => {
+              .Register<ServiceFactory>(ctx => {
                   var c = ctx.Resolve<IComponentContext>();
-                  return t => c.TryResolve(t, out var o) ? o : null;
-              })
-              .InstancePerLifetimeScope();
-
-            // notification handlers
-            builder
-              .Register<MultiInstanceFactory>(ctx => {
-                  var c = ctx.Resolve<IComponentContext>();
-                  return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
+                  return t => c.Resolve(t);
               })
               .InstancePerLifetimeScope();
 

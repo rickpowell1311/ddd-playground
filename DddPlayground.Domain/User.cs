@@ -1,5 +1,4 @@
-﻿using DddPlayground.Infrastrcuture.EventSourcing;
-using DddPlayground.Infrastructure.EventSourcing;
+﻿using DddPlayground.Domain.Infrastructure.MediatR.EventSourcing;
 using System;
 
 namespace DddPlayground.Domain

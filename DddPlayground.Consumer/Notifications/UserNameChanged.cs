@@ -1,5 +1,5 @@
 ﻿using DddPlayground.Domain;
-using DddPlayground.Infrastrcuture.EventSourcing;
+using DddPlayground.Domain.Infrastructure.MediatR.EventSourcing;
 using MediatR;
 using System;
 using System.Collections.Generic;

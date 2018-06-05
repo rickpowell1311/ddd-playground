@@ -6,7 +6,6 @@ namespace DddPlayground.Persistence.InMemory
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<InMemoryPersistenceScope>().AsSelf().InstancePerLifetimeScope();
             builder.RegisterType<UserAggregateRepository>()
                 .As<IUserAggregateRepository>()
                 .InstancePerLifetimeScope();

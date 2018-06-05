@@ -3,12 +3,11 @@ using DddPlayground.Consumer.Features;
 using DddPlayground.Database.Migrations;
 using DddPlayground.Database.MigrationTools;
 using DddPlayground.Domain;
+using DddPlayground.Domain.Infrastructure.AutofacExtensions.MediatR.EventSourcing;
 using DddPlayground.Infrastrcuture.MediatR;
-using DddPlayground.Infrastructure.EventSourcing;
-using DddPlayground.Infrastructure.Persistance;
-using DddPlayground.Persistence.InMemory;
 using DddPlayground.Persistence.NPoco;
 using MediatR;
+using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -19,8 +18,13 @@ namespace DddPlayground.Consumer
         static async Task Main(string[] args)
         {
             var dbName = "mydb.sqlite";
-            var dbFilePath = @".\";
+            var dbFilePath = @".\bin\Debug\netcoreapp2.0\";
             var dbConnectionString = $"Data Source={dbFilePath}{dbName};";
+
+            if (!new DirectoryInfo(dbFilePath).Exists)
+            {
+                Directory.CreateDirectory(dbFilePath);
+            }
 
             // Database migrations
             var dbManager = new DbManager(cfg =>
@@ -43,7 +47,8 @@ namespace DddPlayground.Consumer
             var builder = new ContainerBuilder();
             builder.RegisterModule(new MediatRAutofacModule(scannedAssemblies));
             builder.RegisterModule(new EventSourcingAutofacModule(scannedAssemblies));
-            builder.RegisterModule(new NPocoPersistenceAutofacModule(dbConnectionString));
+            builder.RegisterModule(new Persistence.NPoco.AutofacExtensions.NPocoPersistenceAutofacModule(dbConnectionString));
+            builder.RegisterModule(new Persistence.NPoco.NPocoPersistenceAutofacModule());
 
             using (var container = builder.Build())
             using (var scope = container.BeginLifetimeScope())

@@ -1,5 +1,4 @@
 ﻿using DddPlayground.Domain;
-using DddPlayground.Infrastructure.EventSourcing;
 using DddPlayground.Persistence;
 using MediatR;
 using System;
@@ -16,18 +15,16 @@ namespace DddPlayground.Consumer.Features
         {
         }
 
-        public class Handler : IRequestHandler<Request>
+        public class Handler : AsyncRequestHandler<Request>
         {
-            private readonly IEventDispatcher eventDispatcher;
             private readonly IUserAggregateRepository userRepository;
 
-            public Handler(IEventDispatcher eventDispatcher, IUserAggregateRepository userRepository)
+            public Handler(IUserAggregateRepository userRepository)
             {
-                this.eventDispatcher = eventDispatcher;
                 this.userRepository = userRepository;
             }
 
-            public async Task Handle(Request request, CancellationToken cancellationToken)
+            protected async override Task Handle(Request request, CancellationToken cancellationToken)
             {
                 var user = new User.Aggregate("Bob Smith");
 

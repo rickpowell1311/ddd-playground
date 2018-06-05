@@ -11,14 +11,16 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.1" />
-    <PackageReference Include="MediatR" Version="4.1.0" />
+    <PackageReference Include="MediatR" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DddPlayground.Database.Migrations\DddPlayground.Database.Migrations.csproj" />
     <ProjectReference Include="..\DddPlayground.Database.MigrationTools\DddPlayground.Database.MigrationTools.csproj" />
+    <ProjectReference Include="..\DddPlayground.Domain.Infrastructure.AutofacExtensions\DddPlayground.Domain.Infrastructure.AutofacExtensions.csproj" />
+    <ProjectReference Include="..\DddPlayground.Domain.Infrastructure\DddPlayground.Domain.Infrastructure.csproj" />
     <ProjectReference Include="..\DddPlayground.Domain\DddPlayground.Domain.csproj" />
-    <ProjectReference Include="..\DddPlayground.InMemory\DddPlayground.Persistence.InMemory.csproj" />
+    <ProjectReference Include="..\DddPlayground.Persistence.NPoco.AutofacExtensions\DddPlayground.Persistence.NPoco.AutofacExtensions.csproj" />
     <ProjectReference Include="..\DddPlayground.Persistence.NPoco\DddPlayground.Persistence.NPoco.csproj" />
   </ItemGroup>
 
