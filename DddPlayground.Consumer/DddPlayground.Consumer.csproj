@@ -21,7 +21,7 @@
     <ProjectReference Include="..\DddPlayground.Domain.Infrastructure\DddPlayground.Domain.Infrastructure.csproj" />
     <ProjectReference Include="..\DddPlayground.Domain\DddPlayground.Domain.csproj" />
     <ProjectReference Include="..\DddPlayground.Persistence.NPoco.AutofacExtensions\DddPlayground.Persistence.NPoco.AutofacExtensions.csproj" />
-    <ProjectReference Include="..\DddPlayground.Persistence.NPoco\DddPlayground.Persistence.NPoco.csproj" />
+    <ProjectReference Include="..\DddPlayground.Persistence\DddPlayground.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

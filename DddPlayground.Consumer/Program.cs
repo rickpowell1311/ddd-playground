@@ -5,7 +5,9 @@ using DddPlayground.Database.MigrationTools;
 using DddPlayground.Domain;
 using DddPlayground.Domain.Infrastructure.AutofacExtensions.MediatR.EventSourcing;
 using DddPlayground.Infrastrcuture.MediatR;
+using DddPlayground.Persistence;
 using DddPlayground.Persistence.NPoco;
+using DddPlayground.Persistence.NPoco.AutofacExtensions;
 using MediatR;
 using System.IO;
 using System.Reflection;
@@ -47,8 +49,8 @@ namespace DddPlayground.Consumer
             var builder = new ContainerBuilder();
             builder.RegisterModule(new MediatRAutofacModule(scannedAssemblies));
             builder.RegisterModule(new EventSourcingAutofacModule(scannedAssemblies));
-            builder.RegisterModule(new Persistence.NPoco.AutofacExtensions.NPocoPersistenceAutofacModule(dbConnectionString));
-            builder.RegisterModule(new Persistence.NPoco.NPocoPersistenceAutofacModule());
+            builder.RegisterModule(new NPocoPersistenceAutofacModule(dbConnectionString));
+            builder.RegisterModule(new PersistenceAutofacModule());
 
             using (var container = builder.Build())
             using (var scope = container.BeginLifetimeScope())

@@ -11,17 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddPlayground.Infrastrcutur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddPlayground.Persistence", "DddPlayground.Persistence\DddPlayground.Persistence.csproj", "{A7E2061B-BC7B-465D-81E1-B439A45EE5EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddPlayground.Persistence.NPoco", "DddPlayground.Persistence.NPoco\DddPlayground.Persistence.NPoco.csproj", "{3A5A1D84-1C7B-417E-BCB4-5FDC8050CFCB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{9A91646D-B1B9-41C9-B209-D1849D750722}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddPlayground.Database.MigrationTools", "DddPlayground.Database.MigrationTools\DddPlayground.Database.MigrationTools.csproj", "{C6845ECC-AF74-47CA-90D2-6116E28041F4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddPlayground.Database.Migrations", "DddPlayground.Database.Migrations\DddPlayground.Database.Migrations.csproj", "{2299C6A6-A112-4049-AF5D-8C00D6F25626}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddPlayground.Domain.Infrastructure", "DddPlayground.Domain.Infrastructure\DddPlayground.Domain.Infrastructure.csproj", "{2FCF1C80-5C66-432D-9966-E77CAA76235C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddPlayground.Domain.Infrastructure", "DddPlayground.Domain.Infrastructure\DddPlayground.Domain.Infrastructure.csproj", "{2FCF1C80-5C66-432D-9966-E77CAA76235C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddPlayground.Domain.Infrastructure.AutofacExtensions", "DddPlayground.Domain.Infrastructure.AutofacExtensions\DddPlayground.Domain.Infrastructure.AutofacExtensions.csproj", "{D33FEE5A-0A1C-46EF-9584-8D72A58AEA0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddPlayground.Domain.Infrastructure.AutofacExtensions", "DddPlayground.Domain.Infrastructure.AutofacExtensions\DddPlayground.Domain.Infrastructure.AutofacExtensions.csproj", "{D33FEE5A-0A1C-46EF-9584-8D72A58AEA0B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{922C51C4-FB91-49CB-BE07-FA70CBBBBC14}"
 EndProject
@@ -31,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{AB30AA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{7BB90CA1-487A-4D64-98AE-943125780477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddPlayground.Persistence.NPoco.AutofacExtensions", "DddPlayground.Persistence.NPoco.AutofacExtensions\DddPlayground.Persistence.NPoco.AutofacExtensions.csproj", "{32E7C301-C943-4FE1-9EB5-38B780DED430}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddPlayground.Persistence.NPoco.AutofacExtensions", "DddPlayground.Persistence.NPoco.AutofacExtensions\DddPlayground.Persistence.NPoco.AutofacExtensions.csproj", "{32E7C301-C943-4FE1-9EB5-38B780DED430}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +53,6 @@ Global
 		{A7E2061B-BC7B-465D-81E1-B439A45EE5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E2061B-BC7B-465D-81E1-B439A45EE5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7E2061B-BC7B-465D-81E1-B439A45EE5EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A5A1D84-1C7B-417E-BCB4-5FDC8050CFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A5A1D84-1C7B-417E-BCB4-5FDC8050CFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A5A1D84-1C7B-417E-BCB4-5FDC8050CFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A5A1D84-1C7B-417E-BCB4-5FDC8050CFCB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6845ECC-AF74-47CA-90D2-6116E28041F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C6845ECC-AF74-47CA-90D2-6116E28041F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6845ECC-AF74-47CA-90D2-6116E28041F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
